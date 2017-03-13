@@ -95,14 +95,14 @@ FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为�
 <meta property="og:site_name" content="碧落赋">
 <meta property="og:description" content="什么是FastDFS
 FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为互联网量身定制，充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用FastDFS很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。">
-<meta property="og:image" content="https://github.com/guoshiqiufeng/lovefood/blob/master/blog/2016-07/20160726091637.png">
-<meta property="og:image" content="https://github.com/guoshiqiufeng/lovefood/blob/master/blog/2016-07/20160726091638.png">
-<meta property="og:updated_time" content="2017-03-13T07:25:40.845Z">
+<meta property="og:image" content="https://github.com/guoshiqiufeng/lovefood/raw/master/blog/2016-07/20160726091637.png">
+<meta property="og:image" content="https://github.com/guoshiqiufeng/lovefood/raw/master/blog/2016-07/20160726091638.png">
+<meta property="og:updated_time" content="2017-03-13T07:53:50.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FastDFS集群版搭建">
 <meta name="twitter:description" content="什么是FastDFS
 FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为互联网量身定制，充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用FastDFS很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。">
-<meta name="twitter:image" content="https://github.com/guoshiqiufeng/lovefood/blob/master/blog/2016-07/20160726091637.png">
+<meta name="twitter:image" content="https://github.com/guoshiqiufeng/lovefood/raw/master/blog/2016-07/20160726091637.png">
 
 
 
@@ -409,7 +409,7 @@ FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为�
 </li>
 </ul>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><ul>
-<li>本手册使用CentOS 6.5 x86_64版操作系统，按照以下网络结构进行部署：<br>  <img src="https://github.com/guoshiqiufeng/lovefood/blob/master/blog/2016-07/20160726091637.png" alt="image"></li>
+<li>本手册使用CentOS 6.5 x86_64版操作系统，按照以下网络结构进行部署：<br>  <img src="https://github.com/guoshiqiufeng/lovefood/raw/master/blog/2016-07/20160726091637.png" alt="image"></li>
 </ul>
 <h2 id="安装tracker"><a href="#安装tracker" class="headerlink" title="安装tracker"></a>安装tracker</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>确认是否安装gcc，若未安装按照以下命令使用yum 进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc automake autoconf libtool make</div><div class="line">yum install gcc gcc-c++</div></pre></td></tr></table></figure></p>
 <p>安装libfastcommonV1.0.7工具包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">解压缩</div><div class="line">./make.sh</div><div class="line">./make.sh install</div><div class="line">把/usr/lib64/libfastcommon.so文件向/usr/lib/下复制一份 </div><div class="line">cp /usr/lib64/libfastcommon.so /usr/lib</div></pre></td></tr></table></figure></p>
@@ -449,7 +449,7 @@ FastDFS是用c语言编写的一款开源的分布式文件系统。FastDFS为�
 <h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><p>首先在172.16.1.203上安装nginx，使用nginx-1.8.0.tar.gz源代码包以及FastDFS的nginx插件fastdfs-nginx-module_v1.16.tar.gz。</p>
 <p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar zxf nginx-1.8.0.tar.gz</div><div class="line">tar zxf fastdfs-nginx-module_v1.16.tar.gz</div></pre></td></tr></table></figure></p>
 <p>运行./configure进行安装前的设置，主要设置安装路径、FastDFS插件模块目录、pcre库目录、zlib库目录。<br>如果提示错误，可能缺少依赖的软件包，需先安装依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install pcre-devel</div><div class="line">yum install make zlib zlib-devel gcc-c++ libtool</div></pre></td></tr></table></figure></p>
-<p>配置fastdfs-nginx-module下的config 修改为下面的路径<br><img src="https://github.com/guoshiqiufeng/lovefood/blob/master/blog/2016-07/20160726091638.png" alt="image"></p>
+<p>配置fastdfs-nginx-module下的config 修改为下面的路径<br><img src="https://github.com/guoshiqiufeng/lovefood/raw/master/blog/2016-07/20160726091638.png" alt="image"></p>
 <p>再次运行./configure<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@storage1 nginx-1.8.0]# ./configure --add-module=/root/fastDFS/fastdfs-nginx-module/src</div></pre></td></tr></table></figure></p>
 <p>运行make进行编译、安装，确保编译、安装成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
 <p>将FastDFS的nginx插件模块的配置文件copy到FastDFS配置文件目录。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /root/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs/</div></pre></td></tr></table></figure></p>
